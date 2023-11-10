@@ -1,29 +1,28 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Dimensions, View, Animated, Easing } from 'react-native';
-import NativeLinearGradient from 'react-native-linear-gradient';
+import { StyleSheet, Animated, Easing } from 'react-native';
 import rgb2hex from 'rgb2hex';
+import { LinearGradient } from 'expo-linear-gradient';
 
 // const {height, width} = Dimensions.get('window');
 
-class LinearGradient extends Component {
+class LinearGradientComponent extends Component {
   render() {
-    const { color0, color1, children, points } = this.props;
+    const { color0, color1, children, points, style } = this.props;
     const gStart = points.start;
     const gEnd = points.end;
     return (
-      <NativeLinearGradient
+      <LinearGradient
         // colors={this.props.colors.map((c) => rgb2hex(c).hex)}
         colors={[color0, color1].map((c) => rgb2hex(c).hex)}
         start={gStart}
         end={gEnd}
-        style={[styles.linearGradient]}>
+        style={[styles.linearGradient, style]}>
         {children}
-      </NativeLinearGradient>
+      </LinearGradient>
     )
   }
 }
-Animated.LinearGradient = Animated.createAnimatedComponent(LinearGradient)
+Animated.LinearGradient = Animated.createAnimatedComponent(LinearGradientComponent)
 // Animated.NativeLinearGradient = Animated.createAnimatedComponent(NativeLinearGradient)
 
 export const presetColors = {
